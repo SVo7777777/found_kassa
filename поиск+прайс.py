@@ -78,14 +78,13 @@ canvas5.pack(side="top", fill="both", expand=False)
 ph3 = PhotoImage(file='fazenda2.png')
 canvas5.create_image(400, 200, image=ph3)
 canvas6 = Canvas(frame3, width=184, height=250, borderwidth=0, background="lightgray")
-canvas6.pack(side="top", fill="both", expand=False)
 
 #для поиска
-canvas7 = Canvas(frame1, width=184, height=160, borderwidth=0, background="gray")
+canvas7 = Canvas(frame1, width=200, height=160, borderwidth=0, background="gray")
 canvas7.pack(side="right", fill="both", expand=False)
 ph = PhotoImage(file='fazenda1.png')
 canvas7.create_image(500, 483, image=ph)
-canvas8 = Canvas(frame1, width=300, height=140, borderwidth=0, background="green")
+canvas8 = Canvas(frame1, width=300, height=180, borderwidth=0, background="green")
 canvas8.pack(side="top", fill="both", expand=False)
 ph2 = PhotoImage(file='fazenda2.png')
 canvas8.create_image(600, 200, image=ph2)
@@ -142,37 +141,26 @@ count1('tabl.txt')
 
 counts = count
 #print(counts)
-def price(vid):
+def price():
     global canvas6
+    canvas6.pack(side="top", fill="both", expand=False)
     names = ["№№", "name", "tara", "place", "col", "price"]
     columns = count[0].split()
     counts2 = counts.pop(0)
     new_sp_tovara = []
     print(len(counts))
-    def get_name(element):
-        return element[1]
-    if vid == ' ':
-        for i in range(len(counts)):
-            co = counts[i].split()
-            new_sp_tovara.append(co)
-        new_sp_tovara.sort(key=get_name)
-        for i in range(len(counts)):
-            new_sp_tovara[i][0] = str(i + 1)
-
-    elif vid == 'кашпо':
-        for i in range(len(counts)):
-            co = counts[i].split()
-            if co[2] == 'ка23' or co[2] == 'ка26' or co[2] == 'ка19':
-                new_sp_tovara.append(co)
-        new_sp_tovara.sort(key=get_name)
-        for i in range(len(new_sp_tovara)):
-            new_sp_tovara[i][0] = str(i + 1)
-
+    for i in range(len(counts)):
+        #new_sp_tovara.append([])
+        co = counts[i].split()
+        new_sp_tovara.append(co)
         #print(co)
         #print(new_sp_tovara)
 
-
-
+    def get_name(element):
+        return element[1]
+    new_sp_tovara.sort(key=get_name)
+    for i in range(len(counts)):
+        new_sp_tovara[i][0] = str(i+1)
 
     print(columns)# определяем столбцы
     #print(new_sp_tovara)
@@ -186,8 +174,8 @@ def price(vid):
     tree.heading("price", text=columns[5], anchor=N)
     style = ttk.Style()
     style.configure(".", font=('Helvetica', 10, 'bold'), bg='lightgreen', foreground="orange")
-    style.configure("Treeview", font=('Helvetica', 16), rowheight=26, foreground='green', anchor=N )
-    style.configure("Treeview.Heading", font=('Helvetica', 20, 'bold'), foreground='red')
+    style.configure("Treeview", font=('Helvetica', 10), rowheight=36, foreground='green', anchor=N )
+    style.configure("Treeview.Heading", font=('Helvetica', 12, 'bold'), foreground='red')
     # добавляем вертикальную прокрутку
     xscrollbar = ttk.Scrollbar(canvas6, orient='horizontal', command=tree.xview)
     tree.configure(xscroll=xscrollbar.set)
@@ -196,30 +184,26 @@ def price(vid):
     tree.configure(yscroll=yscrollbar.set)
     yscrollbar.pack(side="right", fill="y", expand=True)
     tree.pack(side="left", fill="both", expand=True)
-    tree.column("#1", stretch=NO, width=60, anchor=N)
-    tree.column("#2", stretch=NO, width=250)
-    tree.column("#3", stretch=NO, width=100, anchor=N)
-    tree.column("#4", stretch=NO, width=100, anchor=N)
-    tree.column("#5", stretch=NO, width=80, anchor=N)
-    tree.column("#6", stretch=NO, width=100, anchor=N)
+    tree.column("#1", stretch=NO, width=80, anchor=N)
+    tree.column("#2", stretch=NO, width=400)
+    tree.column("#3", stretch=NO, width=130, anchor=N)
+    tree.column("#4", stretch=NO, width=130, anchor=N)
+    tree.column("#5", stretch=NO, width=100, anchor=N)
+    tree.column("#6", stretch=NO, width=130, anchor=N)
     # добавляем данные
     for plant in new_sp_tovara:
         tree.insert("", END, values=plant)
+price()
 def price_show():
     global canvas6
     canvas6.pack()
 def price_del():
     global canvas6
     canvas6.pack_forget()
-#price('кашпо')
-bt_price = Button(canvas5, text='овощ. рассада ', command=price('рассада'), bg ='lightblue', fg='blue', bd=0, font=('Arial', 16, 'bold'))
-bt_price.place(x=300, y=10)
-bt_price = Button(canvas5, text='овощ. рассада ', command=price('кашпо'), bg ='lightblue', fg='blue', bd=0, font=('Arial', 16, 'bold'))
-bt_price.place(x=300, y=50)
-bt_price = Button(canvas5, text='показать прайс', command=price_show, bg ='lightblue', fg='blue', bd=0, font=('Arial', 16, 'bold'))
-bt_price.place(x=10, y=10)
-bt_price_del = Button(canvas5, text='скрыть прайс', command=price_del, bg ='lightblue', fg='blue', bd=0, font=('Arial', 16, 'bold'))
-bt_price_del.place(x=10, y=50)
+bt_price = Button(canvas5, text='показать прайс', command=price_show, bg ='lightblue', fg='blue', bd=0, font=('Arial', 8, 'bold'))
+bt_price.place(x=300, y=40)
+bt_price_del = Button(canvas5, text='скрыть прайс', command=price_del, bg ='lightblue', fg='blue', bd=0, font=('Arial', 8, 'bold'))
+bt_price_del.place(x=10, y=40)
 #заполняем первую вкладку для поиска
 entry0 = {}
 menubut0 = {}
@@ -227,27 +211,27 @@ but0 = {}
 for i in range(28):
     for j in range(8):
         if j == 0:
-            but0[(i, j)] = Button(scrolled_frame8, width=6, bg='LightSteelBlue', fg='Black', justif="left",
-                                 font=('Arial', 8, 'bold'), text='%s' % i)
+            but0[(i, j)] = Button(scrolled_frame8, width=1, bg='LightSteelBlue', fg='Black', justif="left",
+                                 font=('Arial', 6, 'bold'), text='%s' % i)
             but0[i, j].grid(row=i, column=j)
             #myTip = Hovertip(but0[i, 0], 'подсказка')
         else:
             entry0[(i, j)] = Entry(scrolled_frame8, width=7, fg='blue',
-                                  font=('Arial', 12, ''))
+                                  font=('Arial', 10, ''))
             entry0[i, j].grid(row=i, column=j)
             # self.entry[i,j].insert(0, plant[i][j])
             if i == 0:
-                entry0[i, j].config(justif="center", bg="yellow", font=('Arial', 12, 'bold'), fg="green")
+                entry0[i, j].config(justif="center", bg="yellow", font=('Arial', 10, 'bold'), fg="green")
             if j == 0 or j == 5 or j == 4:
                 entry0[i, j].config(justif='center')
             if j == 5:
                 entry0[i, j].config(width=14)
             if j == 1:
-                entry0[i, j].config(width=23)
+                entry0[i, j].config(width=19)
             if j == 0:
                 entry0[i, j].config(width=7)
             if j == 2 or j == 4 or j == 3:
-                entry0[i, j].config(width=9, justif='center')
+                entry0[i, j].config(width=7, justif='center')
             if j == 6 or j == 7 or j == 8 or j == 9 or j == 10:
                 entry0[i, j].config(width=7)
             if j == 6:
@@ -278,7 +262,7 @@ def menubats(i, j):
         optionss.add_command(label='показать, где ' + a, command=lambda: show(a, p, i, col, tara, c))
         optionss.add_command(label='добавить в накладную ' + '"' + a + '"', command=lambda: (nakl(a, c, tara, p)))
         #optionss.add_command(label='добавить в товарный чек' + '"' + a + '"')
-    menubuts[i, 6].grid(row=i, columns=3)
+    menubuts[i, 6].grid(row=i, columns=2)
 
 #кнопки меню для изменения данных в прайсе
 menubut = {}
@@ -441,10 +425,10 @@ def delbutn():
     for w in scrolled_frame8.winfo_children():
         if w.winfo_class() == "Menubutton":
              w.destroy()
-l_search = Label(canvas8, text='Введите название расстения:', bg ='lightblue', fg='blue', font=('Arial', 16, 'bold'))
+l_search = Label(canvas8, text='Введите название расстения:', bg ='lightblue', fg='blue', font=('Arial', 8, 'bold'))
 l_search.place(x=5, y=10)#y=150
-uptablb = Button(canvas8, width=16, text='очистить таблицу', bg='lightblue', command=lambda: uptabl(), fg='blue', bd=0 ,font=('Arial', 16, 'bold'))
-uptablb.place(x=5, y=100)
+uptablb = Button(canvas8, width=12, text='очистить таблицу', bg='lightblue', command=lambda: uptabl(), fg='blue', bd=0 ,font=('Arial', 8, 'bold'))
+uptablb.place(x=5, y=80)
 def check_input2(_event=None):
     value = vvod_search2.get().lower()
     #listbox.place_forget()
@@ -457,12 +441,12 @@ def check_input2(_event=None):
         for item in lst:
             if value.lower() in item.lower():
                 data.append(item)
-                listbox2.place(x=320, y=40)
+                listbox2.place(x=400, y=50)
                 vvod_search2.focus()
                 listbox2_values.set(data)
 entry_text2 = StringVar()
-vvod_search2 = Entry(canvas8,  width=15, fg='black', font=('Arial', 16, 'bold'), textvariable=entry_text2)
-vvod_search2.place(x=320, y=10)
+vvod_search2 = Entry(canvas8,  width=15, fg='black', font=('Arial', 12, 'bold'), textvariable=entry_text2)
+vvod_search2.place(x=400, y=1)
 vvod_search2.bind('<KeyRelease>', check_input2)
 #vvod_search.bind('<Return>', poisk)
 def on_change_selection2(event):
@@ -477,7 +461,7 @@ def on_change_selection2(event):
         listbox2.place_forget()
         vvod_search2.unbind('<KeyRelease>')
 listbox2_values = Variable()
-listbox2 = Listbox(canvas8, listvariable=listbox2_values, width=20, fg='black', font=('Arial', 14, 'bold'))
+listbox2 = Listbox(canvas8, listvariable=listbox2_values, width=18, fg='black', font=('Arial', 9, 'bold'))
 listbox2.bind('<<ListboxSelect>>', on_change_selection2)
 listbox2_values.set(lst)
 root.mainloop()

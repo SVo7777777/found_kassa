@@ -166,7 +166,7 @@ def chek_up():
             c = chek_itogo['text'].split('.')
             if result2:
                 s = int(c[0])
-                save(str(s) + 'perevod')
+                save(str(s) + ' perevod')
             else:
                 s = int(c[0])
                 save(str(s))
