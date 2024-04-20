@@ -211,11 +211,11 @@ def total_buyers():
                     canv.create_line(55 + i * 30 + n, 663-m, 55 + i * 30 + n, 50 - m, width=1, fill='gray', tags='del')
                 for i in range(k // 10 + 1):  # ось у с килограммами
                     if ste >= 0.1 and ste <= 2:
-                        if i % 10 == 0:
+                        if i % 20 == 0:
                             canv.create_text(40 + n, 665 - st * i * 10 - m, text=str(i * 10), fill='green', font=('Arial', 10, 'bold'), tags='del')
                             canv.create_line(50 + n, 665 - st * i * 10 - m, 1000 + n, 665 - st * i * 10 - m, fill='gray', width=1, tags='del')
                     elif ste <= 0.1:
-                        if i % 100 == 0:
+                        if i % 2000 == 0:
                             canv.create_text(40 + n, 665 - st * i * 10 - m, text=str(i * 10), fill='green', font=('Arial', 10, 'bold'), tags='del')
                             canv.create_line(50 + n, 665 - st * i * 10 - m, 1000 + n, 665 - st * i * 10 - m, width=1, tags='del', fill='gray')
 
