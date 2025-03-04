@@ -22,7 +22,7 @@ def data():
     if st[1][-1] == 'ь' or st[1][-1] == 'й':
         month = st[1][0:-1].lower() + 'я'
     else:
-        month = st[1].lower() + 'я'
+        month = st[1].lower() + 'а'
     print(month)
     st[1] = month
     print(st)
