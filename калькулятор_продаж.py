@@ -57,13 +57,13 @@ def tabl(col):
 
                 if j == 5 or j == 7:
                     but[(z, j)] = Button(scrolled_frame8, text='del', width=4, fg='blue',
-                                          font=('Arial', 6, 'bold'))
+                                          font=('Arial', 10, 'bold'))
                     but[z, j].grid(row=z, column=j)
                     #if j == 7:
                         #but[z, j].config(text='+', width=5)
                 else:
                     entry[(z, j)] = Entry(scrolled_frame8, width=5, fg='blue',
-                                              font=('Arial', 10, 'bold'))
+                                              font=('Arial', 15, 'bold'))
                     entry[z, j].grid(row=z, column=j)
                     if j == 1 or j == 3:
                         entry[z, j].config(justif='center')
@@ -81,7 +81,7 @@ def tabl(col):
                         entry[z, j].insert(0, '=')
                     if j == 4:
                         entry[z, j].config(fg='orange', width=7)
-col = 20
+col = 50
 tabl(col)
 sum_sp = []
 def chek_stoimost(t):# стоимость по строке
@@ -318,7 +318,7 @@ def klava():
     global keyboard
     keyboard = Toplevel(root)
     keyboard.title("цифровая клавиатура")
-    keyboard.geometry("488x195+330+155")#1300x460+200+2; 1500x600+5+5
+    keyboard.geometry("688x215+650+390")#1300x460+200+2; 1500x600+5+5
     #keyboard['bg'] = 'orange'
     keyboard.overrideredirect(0)
     keyboard.attributes("-topmost", True)
@@ -348,29 +348,29 @@ def klava():
         else:
             entry_focus[-1].insert(END, n)
             entry_focus[-1].focus()
-    num_1 = Button(keyboard, text='1', width=1, height=1, fg='white',bg='blue',command=lambda: discount(1), bd=2, font=('Arial', 8, 'bold'))
+    num_1 = Button(keyboard, text='1', width=2, height=2, fg='white',bg='blue',command=lambda: discount(1), bd=2, font=('Arial', 8, 'bold'))
     num_1.grid(row=0, column=0)
-    num_2 = Button(keyboard, text='2', width=1, height=1, fg='white',bg='blue', command=lambda: discount(2), bd=2, font=('Arial', 8, 'bold'))
+    num_2 = Button(keyboard, text='2', width=2, height=2, fg='white',bg='blue', command=lambda: discount(2), bd=2, font=('Arial', 8, 'bold'))
     num_2.grid(row=0, column=1)
-    num_3 = Button(keyboard, text='3', width=1, height=1, fg='white',bg='blue', command=lambda: discount(3), bd=2, font=('Arial', 8, 'bold'))
+    num_3 = Button(keyboard, text='3', width=2, height=2, fg='white',bg='blue', command=lambda: discount(3), bd=2, font=('Arial', 8, 'bold'))
     num_3.grid(row=0, column=2)
-    num_4 = Button(keyboard, text='4', width=1, height=1, fg='white',bg='blue',command=lambda: discount(4), bd=2, font=('Arial', 8, 'bold'))
+    num_4 = Button(keyboard, text='4', width=2, height=2, fg='white',bg='blue',command=lambda: discount(4), bd=2, font=('Arial', 8, 'bold'))
     num_4.grid(row=0, column=3)
-    num_5 = Button(keyboard, text='5', width=1, height=1, fg='white',bg='blue', command=lambda: discount(5), bd=2, font=('Arial', 8, 'bold'))
+    num_5 = Button(keyboard, text='5', width=2, height=2, fg='white',bg='blue', command=lambda: discount(5), bd=2, font=('Arial', 8, 'bold'))
     num_5.grid(row=0, column=4)
-    num_6 = Button(keyboard, text='6', width=1, height=1, fg='white',bg='blue', command=lambda: discount(6), bd=2, font=('Arial', 8, 'bold'))
+    num_6 = Button(keyboard, text='6', width=2, height=2, fg='white',bg='blue', command=lambda: discount(6), bd=2, font=('Arial', 8, 'bold'))
     num_6.grid(row=1, column=0)
-    num_7 = Button(keyboard, text='7', width=1, height=1, fg='white',bg='blue',command=lambda: discount(7), bd=2, font=('Arial', 8, 'bold'))
+    num_7 = Button(keyboard, text='7', width=2, height=2, fg='white',bg='blue',command=lambda: discount(7), bd=2, font=('Arial', 8, 'bold'))
     num_7.grid(row=1, column=1)
-    num_8 = Button(keyboard, text='8', width=1, height=1, fg='white',bg='blue', command=lambda: discount(8), bd=2, font=('Arial', 8, 'bold'))
+    num_8 = Button(keyboard, text='8', width=2, height=2, fg='white',bg='blue', command=lambda: discount(8), bd=2, font=('Arial', 8, 'bold'))
     num_8.grid(row=1, column=2)
-    num_9 = Button(keyboard, text='9', width=1, height=1, fg='white',bg='blue', command=lambda: discount(9), bd=2, font=('Arial', 8, 'bold'))
+    num_9 = Button(keyboard, text='9', width=2, height=2, fg='white',bg='blue', command=lambda: discount(9), bd=2, font=('Arial', 8, 'bold'))
     num_9.grid(row=1, column=3)
-    num_0 = Button(keyboard, text='0', width=1, height=1, fg='white',bg='blue',command=lambda: discount(0), bd=2, font=('Arial', 8, 'bold'))
+    num_0 = Button(keyboard, text='0', width=2, height=2, fg='white',bg='blue',command=lambda: discount(0), bd=2, font=('Arial', 8, 'bold'))
     num_0.grid(row=1, column=4)
-    num_b = Button(keyboard, text='bs', width=3, height=1, fg='white',bg='blue', command=lambda: discount(11), bd=2, font=('Arial', 8, 'bold'))
+    num_b = Button(keyboard, text='bs', width=4, height=2, fg='white',bg='blue', command=lambda: discount(11), bd=2, font=('Arial', 8, 'bold'))
     num_b.grid(row=0, column=5)
-    num_e = Button(keyboard, text='en', width=3, height=1, fg='white',bg='blue', command=lambda: discount(22), bd=2, font=('Arial', 8, 'bold'))
+    num_e = Button(keyboard, text='en', width=4, height=2, fg='white',bg='blue', command=lambda: discount(22), bd=2, font=('Arial', 8, 'bold'))
     num_e.grid(row=1, column=5)
     root.mainloop()
 entry_focus = []
