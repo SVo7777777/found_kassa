@@ -50,7 +50,7 @@ def total_buyers():
     Label(wind, text='в ночь с какого | time | ул | т1|тр |',  bg='Goldenrod', bd=0, fg='white',
                      font=('Arial', 8, 'bold')).place(x=32, y=17)
 
-    text2 = tk.Text(wind, width=33, height=8, bg="PaleGoldenrod", font=('Arial', 7, 'bold'),
+    text2 = tk.Text(wind, width=35, height=8, bg="PaleGoldenrod", font=('Arial', 7, 'bold'),
                    fg='Maroon', wrap=tk.WORD)
     text2.place(x=1, y=50)
     text2.focus()

@@ -15,9 +15,9 @@ except ImportError:
     import ttk
 def total_buyers():
     wind = Tk()
-    wind.title('КАЛЕНДАРЬ СБОРА ТОМАТОВ В 2023 ГОДУ')
-    wind.geometry('770x260+10+300')
-    wind['bg'] = 'Tomato'  # 'Goldenrod'
+    wind.title('КАЛЕНДАРЬ СБОРА КАБАЧКОВ В 2023 ГОДУ')
+    wind.geometry('770x260+10+3')
+    wind['bg'] ='YellowGreen'#LightGreen'#PaleGreen'#SpringGreen'#  'GreenYellow'#Goldenrod'#'ForestGreen'  #'    '
     # wind.attributes("-topmost", True)
     import datetime
     today = datetime.date.today()
@@ -27,81 +27,53 @@ def total_buyers():
     mindate = datetime.date(year=2018, month=1, day=21)
     maxdate = today + datetime.timedelta(weeks=500)
     print(mindate, maxdate)
-    cal = Calendar(wind, font="Arial 8", selectmode='day', locale='ru_RU',
+    cal = Calendar(wind, font="Arial 11", selectmode='day', locale='ru_RU',
                    mindate=mindate, maxdate=maxdate, disabledforeground='blue', background="blue",
                    foreground="white",
                    selectbackground="blue",
-                   normalbackground="LightSalmon",
-                   weekendbackground="DarkRed",
+                   normalbackground="PaleGreen",
+                   weekendbackground="DarkGreen",
                    weekendforeground="white",
                    cursor="hand1", year=currentYear, month=currentMonth, day=currentDay)
     # cal.pack(fill="both", expand=True)
     # cal.grid((row=0, column=0)
-    cal.place(x=480, y=10)
+    cal.place(x=650, y=1)
     # текущая дата всегда выделена
     today_date = datetime.date(year=currentYear, month=currentMonth, day=currentDay)
     cal.calevent_create(today_date, 'Hello World', 'today_date')
     cal.tag_config('today_date', background='blue', foreground='white')
-    text = tk.Text(wind, width=30, height=11, bg="Pink", font=('Arial', 16, 'bold'),
+    text = tk.Text(wind, width=40, height=11, bg="PaleGreen", font=('Arial', 16, 'bold'),
                    fg='Maroon', wrap=tk.WORD)
-    #text.place(x=10, y=10)
-    ##Label(wind, text='Количество покупателей:',  bg='Goldenrod', bd=0, fg='white',
-          #font=('Arial', 18, 'bold')).place(x=10, y=280)
 
-    text2 = tk.Text(wind, width=19, height=6, bg="Pink", font=('Arial', 12, 'bold'),
+
+    text2 = tk.Text(wind, width=18, height=6, bg="PaleGreen", font=('Arial', 16, 'bold'),
                     fg='Maroon', wrap=tk.WORD)
-    text2.place(x=10, y=17)
+    text2.place(x=1, y=12)
     text2.focus()
-    i_cheki = Button(wind, text='внести', width=6,  bd=1, bg='DarkRed', fg='white',
+    i_cheki = Button(wind, text='внести', width=13,  bd=1, bg='DarkGreen', fg='white',
                      font=('Arial', 8, 'bold'))
-    i_cheki.place(x=10, y=330)
-    look = Button(wind, text='проссмотреть', width=10, bd=1, bg='DarkRed', fg='white',
+    i_cheki.place(x=1, y=465)
+    look = Button(wind, text='проссмотреть', width=13, bd=1, bg='DarkGreen', fg='white',
                   font=('Arial', 8, 'bold'))
-    look.place(x=10, y=400)
-    diagr = Button(wind, text='диаграмма', width=10, bd=1, bg='DarkRed', fg='white',
+    look.place(x=1, y=530)
+    diagr = Button(wind, text='диаграмма', width=13, bd=1, bg='DarkGreen', fg='white',
                    font=('Arial', 8, 'bold'))
-    diagr.place(x=170, y=330)
+    diagr.place(x=290, y=465)
 
-    sbros = Button(wind, text='сброс', width=3, height=3, bd=1, bg='DarkRed', fg='white',
+    sbros = Button(wind, text='сброс', width=13, bd=1, bg='DarkGreen', fg='white',
                    font=('Arial', 8, 'bold'))
-    sbros.place(x=385, y=330)
-    kn = Button(wind, text='по дате', width=6, bd=1, bg='DarkRed', fg='white',
+    sbros.place(x=590, y=465)
+    
+    kn = Button(wind, text='по дате', width=13, bd=1, bg='DarkGreen', fg='white',
                 font=('Arial', 8, 'bold'))
-    kn.place(x=230, y=400)
-    kn_diagr_money = Button(wind, text='диаграмма продаж', width=24, bd=1, bg='blue', fg='white',
-                            font=('Arial', 18, 'bold'))
-    #kn_diagr_money.place(x=385, y=260)
-    l_per = Label(wind, font=("Arial", 16, 'bold'), text='Всего переводов за ', bg='Goldenrod', bd=0, fg='white')
-    #l_per.place(x=370, y=320)
-    l = Label(wind, font=("Arial", 16, 'bold'), text='Всего наличными за ', bg='Goldenrod', bd=0, fg='white')
-    #l.place(x=370, y=350)
-    l2 = Label(wind, font=("Arial", 25, 'bold'), text='Итого за ', bg='Goldenrod', bd=0, fg='white')
-    #l2.place(x=400, y=400)
-    mes = ['месяц', 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября',
-           'ноября', 'декабря']
-    mes3 = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-    def otdali():
-        #text2.delete('1.0', END)
-
-        with open('tomatos.txt', 'r') as f, open('tomatos1.txt', 'a+') as f1:
-            fi = f.read()
-            sp = fi.splitlines()
-            print(sp)
-            for i in range(1, len(sp)):
-                s = sp[i].split()
-                ind = mes.index(s[1])
-                if len(s[0]) == 1:
-                    line = '0' + s[0] + '-' + mes3[ind] + '-' + s[2] + ': ' + s[5]
-                else:
-                    line = s[0] + '-' + mes3[ind] + '-' + s[2] + ': ' + s[5]
-
-                print(line)
-                f1.write(line + '\n')
-            #text2.insert('1.0', fi)
+    kn.place(x=290, y=530)
+    sbros = Button(wind, text='', width=13, bd=1, bg='DarkGreen', fg='white',
+                   font=('Arial', 8, 'bold'))
+    sbros.place(x=590, y=530)
 
     def look_date(data):
         ne_sobirali = True
-        with open('tomatos1.txt', 'r') as f:
+        with open('ogurci1.txt', 'r') as f:
             all = f.read()
             sp_all = all.splitlines()
             for i in range(len(sp_all)):
@@ -119,13 +91,12 @@ def total_buyers():
         global nadpisi, total, total_del
         root = Tk()
         root.geometry('1340x600')
-        root.title('Сбор томатов в 2024г.')
         n = 50
         m = 50
         nadpisi = False
 
-        canv = Canvas(root, width=400, height=280, bg="white", cursor='pencil')
-        can = Canvas(canv, width=1080, height=640, bg="white")
+        canv = Canvas(root, width=800, height=280, bg="white", cursor='pencil')
+        can = Canvas(canv,  width=1080, height=600,  bg="white" )
         # создаём полосу прrокруткtи для холста для frame8 and canvas9 для табеля
         vsb20 = Scrollbar(canv, orient="horizontal")
         vsb20.pack(side="bottom", fill="x", expand=False)
@@ -143,13 +114,12 @@ def total_buyers():
         def on_configure8(event):
             """Set the scroll region to encompass the scrolled frame"""
             can.configure(scrollregion=can.bbox("all"))
-
         scrolled_frame8.bind("<Configure>", on_configure8)
         can.create_line(55 + n, 617, 55 + n, 0, width=2, arrow=LAST)
         can.create_line(100, 665 - m, 1000 + n, 665 - m, width=2, arrow=LAST)
         canv.place(x=20, y=0)
         can.create_text(400, 660, text='числа в месяце', fill='blue', font=('Arial', 10, 'bold'))
-        can.create_text(35, 300, text='\nк\nи\nл\nо\nг\nр\nа\nм\nм\nы', fill='green', font=('Arial', 10, 'bold'))
+        can.create_text(55, 300, text='\nк\nи\nл\nо\nг\nр\nа\nм\nм\nы', fill='green', font=('Arial', 10, 'bold'))
         kg = []
         num = []
         mon0 = []
@@ -167,14 +137,14 @@ def total_buyers():
                     else:
                         slo_date[date] = []
                         slo_date[date].append(int(s[2]))
-                print(slo_date)
+                #print(slo_date)
                 for date in slo_date:
                     slo_date[date] = int(math.fsum(slo_date[date]))
-                print(slo_date)
+                #print(slo_date)
                 g = []
                 for date in slo_date:
                     g.append(date + ' ' + str(slo_date[date]))
-                print('будущее li: ', g)
+                #print('будущее li: ', g)
                 li = g
         def setka(total, mesj):
             global li, st, mon, kg
@@ -189,7 +159,7 @@ def total_buyers():
                     if file_look == 'kalkulator.txt':
                         preobrag(slo_date, li)
                         li = g
-                    print(li)
+                    #print(li)
                     stri = li[0].split()
                     mon.append(stri[0][3:5])
                     for i in range(len(li)):
@@ -239,16 +209,16 @@ def total_buyers():
             for i in range(k // 10 + 1):  # ось у с килограммами
                 if ste >= 0.1 and ste <= 2:
                     if i % 10 == 0:
-                        can.create_text(40 + n, 665 - st * i * 10 - m, text=str(i * 10), fill='green', font=('Arial', 6, 'bold'), tags='del')
+                        can.create_text(40 + n, 665 - st * i * 10 - m, text=str(i * 10), fill='green', font=('Arial', 8, 'bold'), tags='del')
                         can.create_line(50 + n, 665 - st * i * 10 - m, 1000 + n, 665 - st * i * 10 - m, fill='gray', width=1, tags='del')
                 elif ste <= 0.1:
                     if i % 100 == 0:
-                        can.create_text(40 + n, 665 - st * i * 10 - m, text=str(i * 10), fill='green', font=('Arial', 6, 'bold'), tags='del')
+                        can.create_text(40 + n, 665 - st * i * 10 - m, text=str(i * 10), fill='green', font=('Arial', 8, 'bold'), tags='del')
                         can.create_line(50 + n, 665 - st * i * 10 - m, 1000 + n, 665 - st * i * 10 - m, width=1, tags='del', fill='gray')
 
                 else:
                     can.create_text(40 + n, 665 - st * i * 10 - m, text=str(i * 10), fill='green',
-                                     font=('Arial', 6, 'bold'), tags='del')
+                                     font=('Arial', 8, 'bold'), tags='del')
                     can.create_line(50 + n, 665 - st * i * 10 - m, 1000 + n, 665 - st * i * 10 - m, width=1,
                                      tags='del', fill='gray')
 
@@ -286,8 +256,8 @@ def total_buyers():
                 summer = math.fsum(tot)
                 tot_sum.append(summer)
                 #print('summer=', summer)
-                can.create_line(120, t+50, 160, t+50, width=5, fill=cvet, smooth=True, tags='del')
-                can.create_text(165, t+50, text=mesja1 + ' -  ' + str(summer) + 'кг.', font=('Arial', 8, 'bold'), anchor='w', fill=cvet, tags='del')
+                can.create_line(120, t, 160, t, width=5, fill=cvet, smooth=True, tags='del')
+                can.create_text(180, t, text=mesja1 + ' -  ' + str(summer) + 'кг.', font=('Arial', 7, 'bold'), fill=cvet, tags='del', anchor='w')
                 # t = t + 20
             for i in range(0, len(li)):
                 sp1 = li[i].split()
@@ -306,6 +276,7 @@ def total_buyers():
 
                         tex1[k, j] = str(num1[j]) + mesja + ': ' + str(kg1[j]) + nai
                         tex[k, j] = str(kg1[j]) + nai
+                        
 
                         l_num[k, j] = 50 + num1[j] * 30 + 14 + n  # по оси х числа месяца, координата х
                         l_kg[k, j] = 655 - st * kg1[j] - m  # по оси у количество кг, координата у
@@ -317,13 +288,13 @@ def total_buyers():
                     butt = {}
 
             def but(k, g):
-                butt[k, g] = Button(can, text=tex[k, g], fg='black', font=('Arial', 8, 'bold'))  # надписи над точками
-                #butt[k, g].place(x=l_num[k, g], y=l_kg[k, g])
+                butt[k, g] = Button(scrolled_frame8,  text=tex[k, g], width=1,  fg='black', font=('Arial', 6, 'bold'))  # надписи над точками
+                butt[k, g].place(x=l_num[k, g], y=l_kg[k, g])
 
                 def text1(k, g):
                     can.delete('del2')
                     can.create_text(640, 650, text=tex1[k, g],
-                                     font=('Arial', 20, 'bold'),
+                                     font=('Arial', 10, 'bold'),
                                      fill='MidnightBlue', tags='del2')
 
                 butt[k, g].config(command=lambda: text1(k, g))
@@ -357,19 +328,18 @@ def total_buyers():
             if total_del == False:
                 total = True
                 total_del = True
-                # clear()
+                #clear()
                 t = 0
                 total_summer = []
                 setka(total, '')
                 for mo in range(len(mon)):
                     t = t + 20
                     diagr(mon[mo], color[mo], mo + 1, nai, total_summer)
-                can.create_text(780, 660, text='Всего собрано: ' + str(math.fsum(total_summer)) + 'кг.',
+                can.create_text(760, 660, text='Всего собрано: ' + str(math.fsum(total_summer)) + 'кг.',
                                  font=('Arial', 10, 'bold'),
                                  fill='MidnightBlue', tags='del2')
             else:
                 messagebox.showinfo('внимание', 'очистите, нажав "del" ')
-
         def selected(event):
             global nadpisi, total, total_del
             if total_del == False:
@@ -385,7 +355,7 @@ def total_buyers():
                 messagebox.showinfo('внимание', 'очистите, нажав "del" ')
 
 
-        total_diagr = Button(root, text='общая', command=total_di, width=3)
+        total_diagr = Button(root, text='общая', command=total_di, width=5)
         total_diagr.place(x=1140, y=10)
 
         def clear():
@@ -395,18 +365,18 @@ def total_buyers():
             can.delete('del3')
             total = False
             total_del = False
-            for w in canv.winfo_children():
+            for w in can.winfo_children():
                 if w.winfo_class() == "Button":
                     w.destroy()
 
-        clean = Button(root, text='del', command=clear, width=3)
+        clean = Button(root, text='del', command=clear, width=5)
         clean.place(x=1140, y=80)
         mes = ['месяц', 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября',
                'ноября', 'декабря']
         mes2 = ['месяц', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь',
                 'Ноябрь', 'Декабрь']
         mes3 = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        combobox = ttk.Combobox(root, values=mes2, state="readonly", width=7, font=('Comic', 8, 'bold'))
+        combobox = ttk.Combobox(root, values=mes2, state="readonly", width=7, font=('Comic', 11, 'bold'))
         combobox.place(x=1140, y=480)
         inf = Label(root, bg='lightblue', fg='blue', font=('Arial', 20, 'bold'))
         # inf.place(x=710, y=50)#y=150
@@ -414,12 +384,12 @@ def total_buyers():
         combobox.set('месяц')
         root.mainloop()
 
-    diagr.config(command=lambda: diagra('tomatos1.txt', 1, 'кг.'))
+    diagr.config(command=lambda: diagra('ogurci1.txt', 1, 'кг.'))
     #kn_diagr_money.config(command=lambda: diagra('kalkulator.txt', 1, 'p.'))
 
     def look_col():
         text2.delete('1.0', END)
-        with open('tomatos1.txt', 'r') as f:
+        with open('ogurci1.txt', 'r') as f:
             fi = f.read()
             text2.insert('1.0', fi)
 
@@ -445,7 +415,7 @@ def total_buyers():
                 messagebox.showwarning('предупреждение!!!',
                                        'действие выполнить невозможно!!!\nвведите количество огурцов!!!')
             else:
-                with open('tomatos1.txt', 'a+') as f:
+                with open('ogurci1.txt', 'a+') as f:
                     f.write(s)
                     messagebox.showinfo('внимание!!!',
                                         'запись внесена!!!')
@@ -463,11 +433,9 @@ def total_buyers():
         print(new_data_format)
 
         vivod(new_data_format)
-        #itog_day2(new_data_format[0:5])
         kn.config(command=lambda: look_date(new_data_format))
+
     cal.bind("<<CalendarSelected>>", update_text)
-    #sbros.config(command=otdali)
     wind.mainloop()
 # создаём меню
-
 total_buyers()
